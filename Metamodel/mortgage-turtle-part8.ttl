@@ -1,0 +1,48 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix mm: <http://example.org/metamodel#> .
+@prefix companyFibo: <http://example.org/company/fibo#> .
+@prefix schema: <http://example.org/schema#> .
+@prefix attr: <http://example.org/attribute#> .
+
+attr:loan_purpose a mm:SchemaAttribute ;
+    dct:identifier "ATTR-006"^^xsd:string ;
+    dct:title "Loan Purpose"^^xsd:string ;
+    dct:description "Purpose of the loan (purchase, refinance)"^^xsd:string ;
+    mm:dataType "string"^^xsd:string ;
+    mm:required "true"^^xsd:boolean ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#Mortgage"^^xsd:anyURI ;
+        mm:domainClass "Mortgage"^^xsd:string ;
+        mm:domainProperty "purpose"^^xsd:string ;
+    ] .
+
+attr:loan_type a mm:SchemaAttribute ;
+    dct:identifier "ATTR-007"^^xsd:string ;
+    dct:title "Loan Type"^^xsd:string ;
+    dct:description "Type of loan (conventional, FHA, VA)"^^xsd:string ;
+    mm:dataType "string"^^xsd:string ;
+    mm:required "true"^^xsd:boolean ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#Mortgage"^^xsd:anyURI ;
+        mm:domainClass "Mortgage"^^xsd:string ;
+        mm:domainProperty "loanType"^^xsd:string ;
+    ] .
+
+# Schema 2: Borrower Schema
+schema:borrower-schema a mm:Schema ;
+    dct:identifier "SCHEMA-002"^^xsd:string ;
+    dct:title "Borrower Schema"^^xsd:string ;
+    dct:description "Schema for borrower data"^^xsd:string ;
+    mm:version "1.0"^^xsd:string ;
+    mm:hasAttribute 
+        attr:borrower_id,
+        attr:first_name,
+        attr:last_name,
+        attr:dob,
+        attr:ssn,
+        attr:annual_income,
+        attr:employment_status,
+        attr:employer_name .

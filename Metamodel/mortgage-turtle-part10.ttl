@@ -1,0 +1,59 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix mm: <http://example.org/metamodel#> .
+@prefix companyFibo: <http://example.org/company/fibo#> .
+@prefix schema: <http://example.org/schema#> .
+@prefix attr: <http://example.org/attribute#> .
+
+attr:annual_income a mm:SchemaAttribute ;
+    dct:identifier "ATTR-012"^^xsd:string ;
+    dct:title "Annual Income"^^xsd:string ;
+    dct:description "Annual income amount"^^xsd:string ;
+    mm:dataType "decimal"^^xsd:string ;
+    mm:required "true"^^xsd:boolean ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#IncomeVerification"^^xsd:anyURI ;
+        mm:domainClass "IncomeVerification"^^xsd:string ;
+        mm:domainProperty "incomeAmount"^^xsd:string ;
+    ] .
+
+attr:employment_status a mm:SchemaAttribute ;
+    dct:identifier "ATTR-013"^^xsd:string ;
+    dct:title "Employment Status"^^xsd:string ;
+    dct:description "Current employment status"^^xsd:string ;
+    mm:dataType "string"^^xsd:string ;
+    mm:required "true"^^xsd:boolean ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#Borrower"^^xsd:anyURI ;
+        mm:domainClass "Borrower"^^xsd:string ;
+        mm:domainProperty "employmentStatus"^^xsd:string ;
+    ] .
+
+attr:employer_name a mm:SchemaAttribute ;
+    dct:identifier "ATTR-014"^^xsd:string ;
+    dct:title "Employer Name"^^xsd:string ;
+    dct:description "Name of employer"^^xsd:string ;
+    mm:dataType "string"^^xsd:string ;
+    mm:required "true"^^xsd:boolean ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#Borrower"^^xsd:anyURI ;
+        mm:domainClass "Borrower"^^xsd:string ;
+        mm:domainProperty "employer"^^xsd:string ;
+    ] .
+
+# Schema 3: Credit Schema
+schema:credit-schema a mm:Schema ;
+    dct:identifier "SCHEMA-003"^^xsd:string ;
+    dct:title "Credit Schema"^^xsd:string ;
+    dct:description "Schema for credit data"^^xsd:string ;
+    mm:version "1.0"^^xsd:string ;
+    mm:hasAttribute 
+        attr:borrower_id,
+        attr:credit_score,
+        attr:credit_score_type,
+        attr:report_date,
+        attr:delinquencies_24m,
+        attr:bankruptcies,
+        attr:total_debt .

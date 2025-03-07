@@ -1,0 +1,72 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix mm: <http://example.org/metamodel#> .
+@prefix companyFibo: <http://example.org/company/fibo#> .
+@prefix dp: <http://example.org/dataproduct#> .
+@prefix ds: <http://example.org/dataset#> .
+@prefix schema: <http://example.org/schema#> .
+@prefix attr: <http://example.org/attribute#> .
+
+# ======================================================
+# Data Products
+# ======================================================
+
+# Data Product 1: Loan Origination Data Product
+dp:loan-origination-data-product a mm:DataProduct ;
+    dct:identifier "DP-001"^^xsd:string ;
+    dct:title "Loan Origination Data Product"^^xsd:string ;
+    dct:description "Comprehensive data about mortgage loan originations, including application, borrower, credit, property, and underwriting information"^^xsd:string ;
+    mm:version "1.0"^^xsd:string ;
+    mm:status "Active"^^xsd:string ;
+    mm:domain "Secondary Mortgage Market"^^xsd:string ;
+    mm:owner "Mortgage Data Department"^^xsd:string ;
+    mm:contains ds:mortgage-application-data, ds:borrower-data, ds:credit-data, ds:property-data, ds:loan-underwriting-data .
+
+# Data Product 2: Mortgage Loan Details Data Product
+dp:mortgage-loan-details-data-product a mm:DataProduct ;
+    dct:identifier "DP-002"^^xsd:string ;
+    dct:title "Mortgage Loan Details Data Product"^^xsd:string ;
+    dct:description "Detailed information about mortgage loans, including standard and adjustable rate mortgages and their terms"^^xsd:string ;
+    mm:version "1.0"^^xsd:string ;
+    mm:status "Active"^^xsd:string ;
+    mm:domain "Secondary Mortgage Market"^^xsd:string ;
+    mm:owner "Mortgage Data Department"^^xsd:string ;
+    mm:contains ds:mortgage-loan-data, ds:arm-details-data, ds:mortgage-terms-data .
+
+# Data Product 3: Loan Servicing Data Product
+dp:loan-servicing-data-product a mm:DataProduct ;
+    dct:identifier "DP-003"^^xsd:string ;
+    dct:title "Loan Servicing Data Product"^^xsd:string ;
+    dct:description "Data about mortgage loan servicing, including servicer information, escrow accounts, and payment history"^^xsd:string ;
+    mm:version "1.0"^^xsd:string ;
+    mm:status "Active"^^xsd:string ;
+    mm:domain "Secondary Mortgage Market"^^xsd:string ;
+    mm:owner "Mortgage Servicing Department"^^xsd:string ;
+    mm:contains ds:mortgage-servicing-data, ds:escrow-account-data, ds:payment-history-data .
+
+# Data Product 4: Loan Performance Data Product
+dp:loan-performance-data-product a mm:DataProduct ;
+    dct:identifier "DP-004"^^xsd:string ;
+    dct:title "Loan Performance Data Product"^^xsd:string ;
+    dct:description "Data about mortgage loan performance, including delinquency, default, and modification information"^^xsd:string ;
+    mm:version "1.0"^^xsd:string ;
+    mm:status "Active"^^xsd:string ;
+    mm:domain "Secondary Mortgage Market"^^xsd:string ;
+    mm:owner "Risk Management Department"^^xsd:string ;
+    mm:contains ds:loan-performance-data, ds:delinquency-data, ds:loan-modification-data .
+
+# Data Product 5: Securitization Data Product
+dp:securitization-data-product a mm:DataProduct ;
+    dct:identifier "DP-005"^^xsd:string ;
+    dct:title "Securitization Data Product"^^xsd:string ;
+    dct:description "Data about mortgage securitization, including pools, securities, tranches, and investor information"^^xsd:string ;
+    mm:version "1.0"^^xsd:string ;
+    mm:status "Active"^^xsd:string ;
+    mm:domain "Secondary Mortgage Market"^^xsd:string ;
+    mm:owner "Capital Markets Department"^^xsd:string ;
+    mm:contains ds:mortgage-pool-data, ds:mortgage-pool-composition-data, ds:mortgage-backed-security-data, ds:securitization-tranche-data .

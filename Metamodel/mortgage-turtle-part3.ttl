@@ -1,0 +1,71 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix mm: <http://example.org/metamodel#> .
+@prefix companyFibo: <http://example.org/company/fibo#> .
+@prefix ds: <http://example.org/dataset#> .
+@prefix schema: <http://example.org/schema#> .
+
+# ======================================================
+# Datasets 6-8 in Mortgage Loan Details Data Product
+# ======================================================
+
+# Dataset 6: Mortgage Loan Data
+ds:mortgage-loan-data a mm:Dataset ;
+    dct:identifier "DS-006"^^xsd:string ;
+    dct:title "Mortgage Loan Data"^^xsd:string ;
+    dct:description "Contains details about originated mortgage loans"^^xsd:string ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#MortgageLoan"^^xsd:anyURI ;
+        mm:domainClass "MortgageLoan"^^xsd:string ;
+    ] ;
+    mm:hasSchema schema:mortgage-loan-schema .
+
+# Dataset 7: Adjustable Rate Mortgage Details
+ds:arm-details-data a mm:Dataset ;
+    dct:identifier "DS-007"^^xsd:string ;
+    dct:title "Adjustable Rate Mortgage Details"^^xsd:string ;
+    dct:description "Contains specific details about adjustable rate mortgages"^^xsd:string ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#AdjustableRateMortgage"^^xsd:anyURI ;
+        mm:domainClass "AdjustableRateMortgage"^^xsd:string ;
+    ] ;
+    mm:hasSchema schema:arm-details-schema .
+
+# Dataset 8: Mortgage Terms Data
+ds:mortgage-terms-data a mm:Dataset ;
+    dct:identifier "DS-008"^^xsd:string ;
+    dct:title "Mortgage Terms Data"^^xsd:string ;
+    dct:description "Contains details about mortgage terms and conditions"^^xsd:string ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#MortgageLoan"^^xsd:anyURI ;
+        mm:domainClass "MortgageLoan"^^xsd:string ;
+    ] ;
+    mm:hasSchema schema:mortgage-terms-schema .
+
+# ======================================================
+# Datasets 9-10 in Loan Servicing Data Product
+# ======================================================
+
+# Dataset 9: Mortgage Servicing Data
+ds:mortgage-servicing-data a mm:Dataset ;
+    dct:identifier "DS-009"^^xsd:string ;
+    dct:title "Mortgage Servicing Data"^^xsd:string ;
+    dct:description "Contains information about mortgage servicing activities"^^xsd:string ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#MortgageServicing"^^xsd:anyURI ;
+        mm:domainClass "MortgageServicing"^^xsd:string ;
+    ] ;
+    mm:hasSchema schema:mortgage-servicing-schema .
+
+# Dataset 10: Escrow Account Data
+ds:escrow-account-data a mm:Dataset ;
+    dct:identifier "DS-010"^^xsd:string ;
+    dct:title "Escrow Account Data"^^xsd:string ;
+    dct:description "Contains information about mortgage escrow accounts"^^xsd:string ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#EscrowAccount"^^xsd:anyURI ;
+        mm:domainClass "EscrowAccount"^^xsd:string ;
+    ] ;
+    mm:hasSchema schema:escrow-account-schema .

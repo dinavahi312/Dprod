@@ -1,0 +1,47 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix mm: <http://example.org/metamodel#> .
+@prefix companyFibo: <http://example.org/company/fibo#> .
+@prefix schema: <http://example.org/schema#> .
+@prefix attr: <http://example.org/attribute#> .
+
+# Schema 1: Mortgage Application Schema
+schema:mortgage-application-schema a mm:Schema ;
+    dct:identifier "SCHEMA-001"^^xsd:string ;
+    dct:title "Mortgage Application Schema"^^xsd:string ;
+    dct:description "Schema for mortgage application data"^^xsd:string ;
+    mm:version "1.0"^^xsd:string ;
+    mm:hasAttribute 
+        attr:application_id,
+        attr:application_date,
+        attr:borrower_id,
+        attr:property_address,
+        attr:loan_amount,
+        attr:loan_purpose,
+        attr:loan_type .
+
+attr:application_id a mm:SchemaAttribute ;
+    dct:identifier "ATTR-001"^^xsd:string ;
+    dct:title "Application ID"^^xsd:string ;
+    dct:description "Unique identifier for the application"^^xsd:string ;
+    mm:dataType "string"^^xsd:string ;
+    mm:required "true"^^xsd:boolean ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#Mortgage"^^xsd:anyURI ;
+        mm:domainClass "Mortgage"^^xsd:string ;
+        mm:domainProperty "identifier"^^xsd:string ;
+    ] .
+
+attr:application_date a mm:SchemaAttribute ;
+    dct:identifier "ATTR-002"^^xsd:string ;
+    dct:title "Application Date"^^xsd:string ;
+    dct:description "Date of application submission"^^xsd:string ;
+    mm:dataType "date"^^xsd:string ;
+    mm:required "true"^^xsd:boolean ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#Mortgage"^^xsd:anyURI ;
+        mm:domainClass "Mortgage"^^xsd:string ;
+        mm:domainProperty "originationDate"^^xsd:string ;
+    ] .

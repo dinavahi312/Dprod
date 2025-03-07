@@ -1,0 +1,663 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dprod: <http://example.org/dprod#> .
+@prefix odps: <http://example.org/odps#> .
+@prefix odcs: <http://example.org/odcs#> .
+@prefix mm: <http://example.org/metamodel#> .
+
+# Metamodel Ontology
+
+mm: a owl:Ontology ;
+    dct:title "Data Product Metamodel Ontology"@en ;
+    dct:description "An integrated metamodel ontology for data products, incorporating concepts from dprod, DCAT, and PROV, with extensions for schemas, specifications, and contracts."@en ;
+    dct:created "2025-03-01"^^xsd:date ;
+    owl:imports dcat:, prov:, dprod: ;
+    dct:creator "Claude AI Assistant"@en ;
+    owl:versionInfo "1.0" .
+
+# Classes from DCAT-3 (extended)
+
+mm:Resource a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "Resource"@en ;
+    rdfs:comment "A dataset, data service or any other resource"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:Dataset a owl:Class ;
+    rdfs:subClassOf mm:Resource, prov:Entity ;
+    rdfs:label "Dataset"@en ;
+    rdfs:comment "A collection of data, published or curated by a single agent"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:Distribution a owl:Class ;
+    rdfs:subClassOf mm:Resource ;
+    rdfs:label "Distribution"@en ;
+    rdfs:comment "A specific representation of a dataset"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:DataService a owl:Class ;
+    rdfs:subClassOf mm:Resource ;
+    rdfs:label "DataService"@en ;
+    rdfs:comment "A service that provides access to data"@en ;
+    rdfs:isDefinedBy mm: .
+
+# Classes from dprod (enhanced with ODDS)
+
+mm:DataProduct a owl:Class ;
+    rdfs:subClassOf mm:Resource, prov:Entity ;
+    rdfs:label "DataProduct"@en ;
+    rdfs:comment "A discrete package of data with associated services and metadata"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:DataProductVersion a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "DataProductVersion"@en ;
+    rdfs:comment "A specific version of a data product"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:Interface a owl:Class ;
+    rdfs:label "Interface"@en ;
+    rdfs:comment "Defines how consumers interact with the data product"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:InputPort a owl:Class ;
+    rdfs:subClassOf mm:Interface ;
+    rdfs:label "InputPort"@en ;
+    rdfs:comment "An interface for receiving data"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:OutputPort a owl:Class ;
+    rdfs:subClassOf mm:Interface ;
+    rdfs:label "OutputPort"@en ;
+    rdfs:comment "An interface for providing data"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:QualityMetadata a owl:Class ;
+    rdfs:label "QualityMetadata"@en ;
+    rdfs:comment "Information about the quality of the data"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:GovernanceMetadata a owl:Class ;
+    rdfs:label "GovernanceMetadata"@en ;
+    rdfs:comment "Information about governance of the data"@en ;
+    rdfs:isDefinedBy mm: .
+
+# Schema extension classes (missing in DCAT)
+
+mm:Schema a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "Schema"@en ;
+    rdfs:comment "Structure definition for a dataset"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:SchemaAttribute a owl:Class ;
+    rdfs:label "SchemaAttribute"@en ;
+    rdfs:comment "An attribute or field in a schema"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:SemanticAnnotation a owl:Class ;
+    rdfs:label "SemanticAnnotation"@en ;
+    rdfs:comment "Semantic annotation linking data elements to domain concepts"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:DataConstraint a owl:Class ;
+    rdfs:label "DataConstraint"@en ;
+    rdfs:comment "A constraint on data values or relationships"@en ;
+    rdfs:isDefinedBy mm: .
+
+# ODPS classes (Open Data Product Specification)
+
+mm:DataProductSpecification a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "DataProductSpecification"@en ;
+    rdfs:comment "A formal specification for a data product"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:QualityRequirement a owl:Class ;
+    rdfs:label "QualityRequirement"@en ;
+    rdfs:comment "A requirement related to data quality"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:ServiceLevelObjective a owl:Class ;
+    rdfs:label "ServiceLevelObjective"@en ;
+    rdfs:comment "An objective for service level"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:LifecyclePolicy a owl:Class ;
+    rdfs:label "LifecyclePolicy"@en ;
+    rdfs:comment "Policy for lifecycle management of the data product"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:SecurityRequirement a owl:Class ;
+    rdfs:label "SecurityRequirement"@en ;
+    rdfs:comment "Requirements related to data security"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:PrivacyRequirement a owl:Class ;
+    rdfs:label "PrivacyRequirement"@en ;
+    rdfs:comment "Requirements related to data privacy"@en ;
+    rdfs:isDefinedBy mm: .
+
+# ODCS classes (Open Data Contract Specification)
+
+mm:DataContract a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "DataContract"@en ;
+    rdfs:comment "A formal agreement between data providers and consumers"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:ContractTerm a owl:Class ;
+    rdfs:label "ContractTerm"@en ;
+    rdfs:comment "A specific term in a data contract"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:Obligation a owl:Class ;
+    rdfs:label "Obligation"@en ;
+    rdfs:comment "A required action as part of the contract"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:Constraint a owl:Class ;
+    rdfs:label "Constraint"@en ;
+    rdfs:comment "A constraint on data usage or provision"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:CompatibilityRule a owl:Class ;
+    rdfs:label "CompatibilityRule"@en ;
+    rdfs:comment "Rules for compatibility between versions"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:RemediationProcess a owl:Class ;
+    rdfs:label "RemediationProcess"@en ;
+    rdfs:comment "Process for addressing contract violations"@en ;
+    rdfs:isDefinedBy mm: .
+
+# PROV extensions for lineage
+
+mm:DataTransformation a owl:Class ;
+    rdfs:subClassOf prov:Activity ;
+    rdfs:label "DataTransformation"@en ;
+    rdfs:comment "An activity that transforms data from one form to another"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:DataAgent a owl:Class ;
+    rdfs:subClassOf prov:Agent ;
+    rdfs:label "DataAgent"@en ;
+    rdfs:comment "An agent responsible for data activities"@en ;
+    rdfs:isDefinedBy mm: .
+
+# Properties - Core relationships
+
+# Dataset relations
+mm:distribution a owl:ObjectProperty ;
+    rdfs:domain mm:Dataset ;
+    rdfs:range mm:Distribution ;
+    rdfs:label "distribution"@en ;
+    rdfs:comment "Links a dataset to its available distributions"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:accessService a owl:ObjectProperty ;
+    rdfs:domain mm:Distribution ;
+    rdfs:range mm:DataService ;
+    rdfs:label "accessService"@en ;
+    rdfs:comment "Links a distribution to an access service"@en ;
+    rdfs:isDefinedBy mm: .
+
+# DataProduct relations
+mm:hasVersion a owl:ObjectProperty ;
+    rdfs:domain mm:DataProduct ;
+    rdfs:range mm:DataProductVersion ;
+    rdfs:label "hasVersion"@en ;
+    rdfs:comment "Links a data product to its versions"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:hasInputPort a owl:ObjectProperty ;
+    rdfs:domain mm:DataProduct ;
+    rdfs:range mm:InputPort ;
+    rdfs:label "hasInputPort"@en ;
+    rdfs:comment "Links a data product to its input ports"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:hasOutputPort a owl:ObjectProperty ;
+    rdfs:domain mm:DataProduct ;
+    rdfs:range mm:OutputPort ;
+    rdfs:label "hasOutputPort"@en ;
+    rdfs:comment "Links a data product to its output ports"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:contains a owl:ObjectProperty ;
+    rdfs:domain mm:DataProduct ;
+    rdfs:range mm:Dataset ;
+    rdfs:label "contains"@en ;
+    rdfs:comment "Links a data product to contained datasets"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:providesService a owl:ObjectProperty ;
+    rdfs:domain mm:DataProduct ;
+    rdfs:range mm:DataService ;
+    rdfs:label "providesService"@en ;
+    rdfs:comment "Links a data product to services it provides"@en ;
+    rdfs:isDefinedBy mm: .
+
+# Schema relations
+mm:hasSchema a owl:ObjectProperty ;
+    rdfs:domain [
+        owl:unionOf (mm:Dataset mm:Distribution)
+    ] ;
+    rdfs:range mm:Schema ;
+    rdfs:label "hasSchema"@en ;
+    rdfs:comment "Links a dataset or distribution to its schema"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:hasAttribute a owl:ObjectProperty ;
+    rdfs:domain mm:Schema ;
+    rdfs:range mm:SchemaAttribute ;
+    rdfs:label "hasAttribute"@en ;
+    rdfs:comment "Links a schema to its attributes"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:hasConstraint a owl:ObjectProperty ;
+    rdfs:domain [
+        owl:unionOf (mm:Schema mm:SchemaAttribute)
+    ] ;
+    rdfs:range mm:DataConstraint ;
+    rdfs:label "hasConstraint"@en ;
+    rdfs:comment "Links schema elements to constraints"@en ;
+    rdfs:isDefinedBy mm: .
+
+# Semantic annotation relations
+mm:hasSemanticAnnotation a owl:ObjectProperty ;
+    rdfs:domain [
+        owl:unionOf (mm:Dataset mm:Schema mm:SchemaAttribute)
+    ] ;
+    rdfs:range mm:SemanticAnnotation ;
+    rdfs:label "hasSemanticAnnotation"@en ;
+    rdfs:comment "Links elements to semantic annotations"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:referencesDomainOntology a owl:ObjectProperty ;
+    rdfs:domain mm:SemanticAnnotation ;
+    rdfs:range rdfs:Resource ;
+    rdfs:label "referencesDomainOntology"@en ;
+    rdfs:comment "References an external domain ontology"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:referencesDomainClass a owl:ObjectProperty ;
+    rdfs:domain mm:SemanticAnnotation ;
+    rdfs:range rdfs:Class ;
+    rdfs:label "referencesDomainClass"@en ;
+    rdfs:comment "References a class in an external domain ontology"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:referencesDomainProperty a owl:ObjectProperty ;
+    rdfs:domain mm:SemanticAnnotation ;
+    rdfs:range rdf:Property ;
+    rdfs:label "referencesDomainProperty"@en ;
+    rdfs:comment "References a property in an external domain ontology"@en ;
+    rdfs:isDefinedBy mm: .
+
+# ODPS relations
+mm:hasSpecification a owl:ObjectProperty ;
+    rdfs:domain mm:DataProduct ;
+    rdfs:range mm:DataProductSpecification ;
+    rdfs:label "hasSpecification"@en ;
+    rdfs:comment "Links a data product to its specification"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:includesQualityRequirement a owl:ObjectProperty ;
+    rdfs:domain mm:DataProductSpecification ;
+    rdfs:range mm:QualityRequirement ;
+    rdfs:label "includesQualityRequirement"@en ;
+    rdfs:comment "Links a specification to quality requirements"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:includesSLO a owl:ObjectProperty ;
+    rdfs:domain mm:DataProductSpecification ;
+    rdfs:range mm:ServiceLevelObjective ;
+    rdfs:label "includesSLO"@en ;
+    rdfs:comment "Links a specification to service level objectives"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:definesLifecycle a owl:ObjectProperty ;
+    rdfs:domain mm:DataProductSpecification ;
+    rdfs:range mm:LifecyclePolicy ;
+    rdfs:label "definesLifecycle"@en ;
+    rdfs:comment "Links a specification to lifecycle policies"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:specifiesSecurity a owl:ObjectProperty ;
+    rdfs:domain mm:DataProductSpecification ;
+    rdfs:range mm:SecurityRequirement ;
+    rdfs:label "specifiesSecurity"@en ;
+    rdfs:comment "Links a specification to security requirements"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:specifiesPrivacy a owl:ObjectProperty ;
+    rdfs:domain mm:DataProductSpecification ;
+    rdfs:range mm:PrivacyRequirement ;
+    rdfs:label "specifiesPrivacy"@en ;
+    rdfs:comment "Links a specification to privacy requirements"@en ;
+    rdfs:isDefinedBy mm: .
+
+# ODCS relations
+mm:hasContract a owl:ObjectProperty ;
+    rdfs:domain mm:DataProduct ;
+    rdfs:range mm:DataContract ;
+    rdfs:label "hasContract"@en ;
+    rdfs:comment "Links a data product to its contract"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:hasTerm a owl:ObjectProperty ;
+    rdfs:domain mm:DataContract ;
+    rdfs:range mm:ContractTerm ;
+    rdfs:label "hasTerm"@en ;
+    rdfs:comment "Links a contract to its terms"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:hasObligation a owl:ObjectProperty ;
+    rdfs:domain mm:DataContract ;
+    rdfs:range mm:Obligation ;
+    rdfs:label "hasObligation"@en ;
+    rdfs:comment "Links a contract to obligations"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:hasConstraint a owl:ObjectProperty ;
+    rdfs:domain mm:DataContract ;
+    rdfs:range mm:Constraint ;
+    rdfs:label "hasConstraint"@en ;
+    rdfs:comment "Links a contract to constraints"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:hasCompatibilityRule a owl:ObjectProperty ;
+    rdfs:domain mm:DataContract ;
+    rdfs:range mm:CompatibilityRule ;
+    rdfs:label "hasCompatibilityRule"@en ;
+    rdfs:comment "Links a contract to compatibility rules"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:specifiesRemediation a owl:ObjectProperty ;
+    rdfs:domain mm:DataContract ;
+    rdfs:range mm:RemediationProcess ;
+    rdfs:label "specifiesRemediation"@en ;
+    rdfs:comment "Links a contract to remediation processes"@en ;
+    rdfs:isDefinedBy mm: .
+
+# Quality and Governance relations
+mm:hasQualityMetadata a owl:ObjectProperty ;
+    rdfs:domain [
+        owl:unionOf (mm:DataProduct mm:Dataset)
+    ] ;
+    rdfs:range mm:QualityMetadata ;
+    rdfs:label "hasQualityMetadata"@en ;
+    rdfs:comment "Links to quality metadata"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:hasGovernanceMetadata a owl:ObjectProperty ;
+    rdfs:domain [
+        owl:unionOf (mm:DataProduct mm:Dataset)
+    ] ;
+    rdfs:range mm:GovernanceMetadata ;
+    rdfs:label "hasGovernanceMetadata"@en ;
+    rdfs:comment "Links to governance metadata"@en ;
+    rdfs:isDefinedBy mm: .
+
+# PROV relationships for lineage
+mm:wasGeneratedBy a owl:ObjectProperty ;
+    rdfs:subPropertyOf prov:wasGeneratedBy ;
+    rdfs:domain [
+        owl:unionOf (mm:Dataset mm:DataProduct)
+    ] ;
+    rdfs:range mm:DataTransformation ;
+    rdfs:label "wasGeneratedBy"@en ;
+    rdfs:comment "Links an entity to its generating activity"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:used a owl:ObjectProperty ;
+    rdfs:subPropertyOf prov:used ;
+    rdfs:domain mm:DataTransformation ;
+    rdfs:range [
+        owl:unionOf (mm:Dataset mm:DataProduct)
+    ] ;
+    rdfs:label "used"@en ;
+    rdfs:comment "Links an activity to entities it used"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:wasDerivedFrom a owl:ObjectProperty ;
+    rdfs:subPropertyOf prov:wasDerivedFrom ;
+    rdfs:domain [
+        owl:unionOf (mm:Dataset mm:DataProduct)
+    ] ;
+    rdfs:range [
+        owl:unionOf (mm:Dataset mm:DataProduct)
+    ] ;
+    rdfs:label "wasDerivedFrom"@en ;
+    rdfs:comment "Links an entity to source entities"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:wasAttributedTo a owl:ObjectProperty ;
+    rdfs:subPropertyOf prov:wasAttributedTo ;
+    rdfs:domain [
+        owl:unionOf (mm:Dataset mm:DataProduct)
+    ] ;
+    rdfs:range mm:DataAgent ;
+    rdfs:label "wasAttributedTo"@en ;
+    rdfs:comment "Links an entity to responsible agents"@en ;
+    rdfs:isDefinedBy mm: .
+
+# Data properties for classes
+
+# Resource properties
+mm:identifier a owl:DatatypeProperty ;
+    rdfs:domain mm:Resource ;
+    rdfs:range xsd:string ;
+    rdfs:label "identifier"@en ;
+    rdfs:comment "A unique identifier for the resource"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:title a owl:DatatypeProperty ;
+    rdfs:domain mm:Resource ;
+    rdfs:range xsd:string ;
+    rdfs:label "title"@en ;
+    rdfs:comment "A name given to the resource"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:description a owl:DatatypeProperty ;
+    rdfs:domain mm:Resource ;
+    rdfs:range xsd:string ;
+    rdfs:label "description"@en ;
+    rdfs:comment "A description of the resource"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:issued a owl:DatatypeProperty ;
+    rdfs:domain mm:Resource ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "issued"@en ;
+    rdfs:comment "Date of formal issuance of the resource"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:modified a owl:DatatypeProperty ;
+    rdfs:domain mm:Resource ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "modified"@en ;
+    rdfs:comment "Most recent date the resource was changed"@en ;
+    rdfs:isDefinedBy mm: .
+
+# Dataset properties
+mm:frequency a owl:DatatypeProperty ;
+    rdfs:domain mm:Dataset ;
+    rdfs:range xsd:string ;
+    rdfs:label "frequency"@en ;
+    rdfs:comment "The frequency at which the dataset is updated"@en ;
+    rdfs:isDefinedBy mm: .
+
+# Distribution properties
+mm:accessURL a owl:DatatypeProperty ;
+    rdfs:domain mm:Distribution ;
+    rdfs:range xsd:anyURI ;
+    rdfs:label "accessURL"@en ;
+    rdfs:comment "A URL that gives access to the distribution"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:downloadURL a owl:DatatypeProperty ;
+    rdfs:domain mm:Distribution ;
+    rdfs:range xsd:anyURI ;
+    rdfs:label "downloadURL"@en ;
+    rdfs:comment "A URL that is a direct link to a downloadable file"@en ;
+    rdfs:isDefinedBy mm: .
+
+# Schema properties
+mm:version a owl:DatatypeProperty ;
+    rdfs:domain [
+        owl:unionOf (mm:Schema mm:DataProductVersion mm:DataProductSpecification mm:DataContract)
+    ] ;
+    rdfs:range xsd:string ;
+    rdfs:label "version"@en ;
+    rdfs:comment "The version of the resource"@en ;
+    rdfs:isDefinedBy mm: .
+
+# SchemaAttribute properties
+mm:dataType a owl:DatatypeProperty ;
+    rdfs:domain mm:SchemaAttribute ;
+    rdfs:range xsd:string ;
+    rdfs:label "dataType"@en ;
+    rdfs:comment "The data type of the attribute"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:required a owl:DatatypeProperty ;
+    rdfs:domain mm:SchemaAttribute ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "required"@en ;
+    rdfs:comment "Whether the attribute is required"@en ;
+    rdfs:isDefinedBy mm: .
+
+# SemanticAnnotation properties
+mm:domainOntologyIRI a owl:DatatypeProperty ;
+    rdfs:domain mm:SemanticAnnotation ;
+    rdfs:range xsd:anyURI ;
+    rdfs:label "domainOntologyIRI"@en ;
+    rdfs:comment "The IRI of the domain ontology"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:domainClass a owl:DatatypeProperty ;
+    rdfs:domain mm:SemanticAnnotation ;
+    rdfs:range xsd:string ;
+    rdfs:label "domainClass"@en ;
+    rdfs:comment "The class in the domain ontology"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:domainProperty a owl:DatatypeProperty ;
+    rdfs:domain mm:SemanticAnnotation ;
+    rdfs:range xsd:string ;
+    rdfs:label "domainProperty"@en ;
+    rdfs:comment "The property in the domain ontology"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:confidenceScore a owl:DatatypeProperty ;
+    rdfs:domain mm:SemanticAnnotation ;
+    rdfs:range xsd:float ;
+    rdfs:label "confidenceScore"@en ;
+    rdfs:comment "The confidence score of the semantic annotation"@en ;
+    rdfs:isDefinedBy mm: .
+
+# QualityMetadata properties
+mm:accuracy a owl:DatatypeProperty ;
+    rdfs:domain mm:QualityMetadata ;
+    rdfs:range xsd:float ;
+    rdfs:label "accuracy"@en ;
+    rdfs:comment "The accuracy measure of the data"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:completeness a owl:DatatypeProperty ;
+    rdfs:domain mm:QualityMetadata ;
+    rdfs:range xsd:float ;
+    rdfs:label "completeness"@en ;
+    rdfs:comment "The completeness measure of the data"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:consistency a owl:DatatypeProperty ;
+    rdfs:domain mm:QualityMetadata ;
+    rdfs:range xsd:float ;
+    rdfs:label "consistency"@en ;
+    rdfs:comment "The consistency measure of the data"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:timeliness a owl:DatatypeProperty ;
+    rdfs:domain mm:QualityMetadata ;
+    rdfs:range xsd:float ;
+    rdfs:label "timeliness"@en ;
+    rdfs:comment "The timeliness measure of the data"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:validity a owl:DatatypeProperty ;
+    rdfs:domain mm:QualityMetadata ;
+    rdfs:range xsd:float ;
+    rdfs:label "validity"@en ;
+    rdfs:comment "The validity measure of the data"@en ;
+    rdfs:isDefinedBy mm: .
+
+# QualityRequirement properties
+mm:metric a owl:DatatypeProperty ;
+    rdfs:domain [
+        owl:unionOf (mm:QualityRequirement mm:ServiceLevelObjective)
+    ] ;
+    rdfs:range xsd:string ;
+    rdfs:label "metric"@en ;
+    rdfs:comment "The metric used to measure quality or service level"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:threshold a owl:DatatypeProperty ;
+    rdfs:domain mm:QualityRequirement ;
+    rdfs:range xsd:string ;
+    rdfs:label "threshold"@en ;
+    rdfs:comment "The threshold for the quality requirement"@en ;
+    rdfs:isDefinedBy mm: .
+
+# DataContract properties
+mm:validFrom a owl:DatatypeProperty ;
+    rdfs:domain mm:DataContract ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "validFrom"@en ;
+    rdfs:comment "The start date of the contract validity"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:validUntil a owl:DatatypeProperty ;
+    rdfs:domain mm:DataContract ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "validUntil"@en ;
+    rdfs:comment "The end date of the contract validity"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:parties a owl:DatatypeProperty ;
+    rdfs:domain mm:DataContract ;
+    rdfs:range xsd:string ;
+    rdfs:label "parties"@en ;
+    rdfs:comment "The parties involved in the contract"@en ;
+    rdfs:isDefinedBy mm: .
+
+# DataTransformation properties
+mm:transformationType a owl:DatatypeProperty ;
+    rdfs:domain mm:DataTransformation ;
+    rdfs:range xsd:string ;
+    rdfs:label "transformationType"@en ;
+    rdfs:comment "The type of transformation"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:algorithm a owl:DatatypeProperty ;
+    rdfs:domain mm:DataTransformation ;
+    rdfs:range xsd:string ;
+    rdfs:label "algorithm"@en ;
+    rdfs:comment "The algorithm used in the transformation"@en ;
+    rdfs:isDefinedBy mm: .
+
+mm:parameters a owl:DatatypeProperty ;
+    rdfs:domain mm:DataTransformation ;
+    rdfs:range xsd:string ;
+    rdfs:label "parameters"@en ;
+    rdfs:comment "The parameters used in the transformation"@en ;
+    rdfs:isDefinedBy mm: .

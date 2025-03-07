@@ -1,0 +1,67 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix mm: <http://example.org/metamodel#> .
+@prefix companyFibo: <http://example.org/company/fibo#> .
+@prefix ds: <http://example.org/dataset#> .
+@prefix schema: <http://example.org/schema#> .
+
+# ======================================================
+# Datasets 1-5 in Loan Origination Data Product
+# ======================================================
+
+# Dataset 1: Mortgage Application Data
+ds:mortgage-application-data a mm:Dataset ;
+    dct:identifier "DS-001"^^xsd:string ;
+    dct:title "Mortgage Application Data"^^xsd:string ;
+    dct:description "Contains information about mortgage applications, including borrower details, property information, and loan terms requested"^^xsd:string ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#Mortgage"^^xsd:anyURI ;
+        mm:domainClass "Mortgage"^^xsd:string ;
+    ] ;
+    mm:hasSchema schema:mortgage-application-schema .
+
+# Dataset 2: Borrower Data
+ds:borrower-data a mm:Dataset ;
+    dct:identifier "DS-002"^^xsd:string ;
+    dct:title "Borrower Data"^^xsd:string ;
+    dct:description "Contains detailed information about mortgage borrowers, including personal details, employment, and income information"^^xsd:string ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#Borrower"^^xsd:anyURI ;
+        mm:domainClass "Borrower"^^xsd:string ;
+    ] ;
+    mm:hasSchema schema:borrower-schema .
+
+# Dataset 3: Credit Data
+ds:credit-data a mm:Dataset ;
+    dct:identifier "DS-003"^^xsd:string ;
+    dct:title "Credit Data"^^xsd:string ;
+    dct:description "Contains credit information about mortgage applicants, including credit scores and history"^^xsd:string ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#CreditScore"^^xsd:anyURI ;
+        mm:domainClass "CreditScore"^^xsd:string ;
+    ] ;
+    mm:hasSchema schema:credit-schema .
+
+# Dataset 4: Property Data
+ds:property-data a mm:Dataset ;
+    dct:identifier "DS-004"^^xsd:string ;
+    dct:title "Property Data"^^xsd:string ;
+    dct:description "Contains information about properties associated with mortgage applications"^^xsd:string ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#RealProperty"^^xsd:anyURI ;
+        mm:domainClass "RealProperty"^^xsd:string ;
+    ] ;
+    mm:hasSchema schema:property-schema .
+
+# Dataset 5: Loan Underwriting Data
+ds:loan-underwriting-data a mm:Dataset ;
+    dct:identifier "DS-005"^^xsd:string ;
+    dct:title "Loan Underwriting Data"^^xsd:string ;
+    dct:description "Contains data related to the underwriting process for mortgage loans"^^xsd:string ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#LoanToValue"^^xsd:anyURI ;
+        mm:domainClass "LoanToValue"^^xsd:string ;
+    ] ;
+    mm:hasSchema schema:loan-underwriting-schema .

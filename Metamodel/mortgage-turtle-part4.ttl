@@ -1,0 +1,75 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix mm: <http://example.org/metamodel#> .
+@prefix companyFibo: <http://example.org/company/fibo#> .
+@prefix ds: <http://example.org/dataset#> .
+@prefix schema: <http://example.org/schema#> .
+
+# ======================================================
+# Dataset 11 in Loan Servicing Data Product
+# ======================================================
+
+# Dataset 11: Payment History Data
+ds:payment-history-data a mm:Dataset ;
+    dct:identifier "DS-011"^^xsd:string ;
+    dct:title "Payment History Data"^^xsd:string ;
+    dct:description "Contains historical payment information for mortgages"^^xsd:string ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#MortgageServicing"^^xsd:anyURI ;
+        mm:domainClass "MortgageServicing"^^xsd:string ;
+    ] ;
+    mm:hasSchema schema:payment-history-schema .
+
+# ======================================================
+# Datasets 12-14 in Loan Performance Data Product
+# ======================================================
+
+# Dataset 12: Loan Performance Data
+ds:loan-performance-data a mm:Dataset ;
+    dct:identifier "DS-012"^^xsd:string ;
+    dct:title "Loan Performance Data"^^xsd:string ;
+    dct:description "Contains data about mortgage loan performance"^^xsd:string ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#LoanPerformance"^^xsd:anyURI ;
+        mm:domainClass "LoanPerformance"^^xsd:string ;
+    ] ;
+    mm:hasSchema schema:loan-performance-schema .
+
+# Dataset 13: Delinquency Data
+ds:delinquency-data a mm:Dataset ;
+    dct:identifier "DS-013"^^xsd:string ;
+    dct:title "Delinquency Data"^^xsd:string ;
+    dct:description "Contains detailed information about mortgage delinquencies"^^xsd:string ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#Delinquency"^^xsd:anyURI ;
+        mm:domainClass "Delinquency"^^xsd:string ;
+    ] ;
+    mm:hasSchema schema:delinquency-schema .
+
+# Dataset 14: Loan Modification Data
+ds:loan-modification-data a mm:Dataset ;
+    dct:identifier "DS-014"^^xsd:string ;
+    dct:title "Loan Modification Data"^^xsd:string ;
+    dct:description "Contains information about modifications to mortgage loans"^^xsd:string ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#MortgageLoan"^^xsd:anyURI ;
+        mm:domainClass "MortgageLoan"^^xsd:string ;
+    ] ;
+    mm:hasSchema schema:loan-modification-schema .
+
+# ======================================================
+# Dataset 15 in Securitization Data Product
+# ======================================================
+
+# Dataset 15: Mortgage Pool Data
+ds:mortgage-pool-data a mm:Dataset ;
+    dct:identifier "DS-015"^^xsd:string ;
+    dct:title "Mortgage Pool Data"^^xsd:string ;
+    dct:description "Contains information about pools of mortgages for securitization"^^xsd:string ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#MortgagePool"^^xsd:anyURI ;
+        mm:domainClass "MortgagePool"^^xsd:string ;
+    ] ;
+    mm:hasSchema schema:mortgage-pool-schema .

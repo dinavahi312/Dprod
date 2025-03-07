@@ -1,0 +1,71 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix mm: <http://example.org/metamodel#> .
+@prefix companyFibo: <http://example.org/company/fibo#> .
+@prefix ds: <http://example.org/dataset#> .
+@prefix schema: <http://example.org/schema#> .
+
+# ======================================================
+# Datasets 16-18 in Securitization Data Product
+# ======================================================
+
+# Dataset 16: Mortgage Pool Composition Data
+ds:mortgage-pool-composition-data a mm:Dataset ;
+    dct:identifier "DS-016"^^xsd:string ;
+    dct:title "Mortgage Pool Composition Data"^^xsd:string ;
+    dct:description "Contains detailed composition information about mortgage pools"^^xsd:string ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#MortgagePool"^^xsd:anyURI ;
+        mm:domainClass "MortgagePool"^^xsd:string ;
+    ] ;
+    mm:hasSchema schema:mortgage-pool-composition-schema .
+
+# Dataset 17: Mortgage-Backed Security Data
+ds:mortgage-backed-security-data a mm:Dataset ;
+    dct:identifier "DS-017"^^xsd:string ;
+    dct:title "Mortgage-Backed Security Data"^^xsd:string ;
+    dct:description "Contains information about mortgage-backed securities"^^xsd:string ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#MortgageBackedSecurity"^^xsd:anyURI ;
+        mm:domainClass "MortgageBackedSecurity"^^xsd:string ;
+    ] ;
+    mm:hasSchema schema:mbs-schema .
+
+# Dataset 18: Securitization Tranche Data
+ds:securitization-tranche-data a mm:Dataset ;
+    dct:identifier "DS-018"^^xsd:string ;
+    dct:title "Securitization Tranche Data"^^xsd:string ;
+    dct:description "Contains information about tranches within mortgage-backed securities"^^xsd:string ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#SecuritizationTranche"^^xsd:anyURI ;
+        mm:domainClass "SecuritizationTranche"^^xsd:string ;
+    ] ;
+    mm:hasSchema schema:securitization-tranche-schema .
+
+# ======================================================
+# Standalone Datasets 19-20
+# ======================================================
+
+# Dataset 19: Investor Data (Standalone)
+ds:investor-data a mm:Dataset ;
+    dct:identifier "DS-019"^^xsd:string ;
+    dct:title "Investor Data"^^xsd:string ;
+    dct:description "Contains information about investors in mortgage-backed securities"^^xsd:string ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#InvestmentEntity"^^xsd:anyURI ;
+        mm:domainClass "InvestmentEntity"^^xsd:string ;
+    ] ;
+    mm:hasSchema schema:investor-schema .
+
+# Dataset 20: Regulatory Compliance Data (Standalone)
+ds:regulatory-compliance-data a mm:Dataset ;
+    dct:identifier "DS-020"^^xsd:string ;
+    dct:title "Regulatory Compliance Data"^^xsd:string ;
+    dct:description "Contains information about regulatory compliance for mortgage loans"^^xsd:string ;
+    mm:hasSemanticAnnotation [
+        mm:domainOntologyIRI "http://example.org/company/fibo#RegulatoryCompliance"^^xsd:anyURI ;
+        mm:domainClass "RegulatoryCompliance"^^xsd:string ;
+    ] ;
+    mm:hasSchema schema:regulatory-compliance-schema .
